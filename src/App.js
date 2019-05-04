@@ -6,7 +6,13 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    cards: cards
+    cards: cards,
+    clicked: false,
+    score: 0
+  }
+
+  clickFunction = () => {
+    console.log("clicked");
   }
 
   render() {

@@ -23,6 +23,11 @@ class App extends React.Component {
       this.setState({score: this.state.score + 1})
     }
     console.log(this.state)
+
+    for (let i = 0; i<cards.length; i++) {
+      let j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
   }
 
   render() {
@@ -34,6 +39,7 @@ class App extends React.Component {
       {this.state.cards.map((props) => (
         <Card 
         {...props}
+        key={props.id}
         handleClick={this.handleClick}/>
       )
       )}

@@ -6,13 +6,23 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    cards: cards,
-    clicked: false,
+    cards,
+    clickedCards: [],
     score: 0
   }
 
-  clickFunction = () => {
-    console.log("clicked");
+  handleClick = (id) => {
+    let clickedCards = this.state.clickedCards
+    
+    if(clickedCards.includes(id)) {
+      this.setState({ clickedCards: [], score: 0})
+      return;
+    }
+    else {
+      clickedCards.push(id)
+      this.setState({cards, clickedCards, score: clickedCards.length})
+    }
+    console.log(this.state)
   }
 
   render() {
@@ -21,7 +31,9 @@ class App extends React.Component {
       <h1 className="title">Memory Click Game</h1>
       
       {this.state.cards.map((props) => (
-        <Card {...props}/>
+        <Card 
+        {...props}
+        handleClick={this.handleClick}/>
       )
       )}
       

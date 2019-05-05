@@ -20,7 +20,7 @@ class App extends React.Component {
     }
     else {
       clickedCards.push(id)
-      this.setState({cards, clickedCards, score: clickedCards.length})
+      this.setState({score: this.state.score + 1})
     }
     console.log(this.state)
   }
@@ -29,6 +29,7 @@ class App extends React.Component {
     return (
     <Wrapper>
       <h1 className="title">Memory Click Game</h1>
+      <h2 className="title">Total = {this.state.score}</h2>
       
       {this.state.cards.map((props) => (
         <Card 

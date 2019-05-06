@@ -8,7 +8,8 @@ class App extends React.Component {
   state = {
     cards,
     clickedCards: [],
-    score: 0
+    score: 0,
+    winlose: ""
   }
 
   handleClick = (id) => {
@@ -16,11 +17,12 @@ class App extends React.Component {
     
     if(clickedCards.includes(id)) {
       this.setState({ clickedCards: [], score: 0})
+      this.setState({winlose: "You lose"})
       return;
     }
     else {
       clickedCards.push(id)
-      this.setState({score: this.state.score + 1})
+      this.setState({score: this.state.score + 1, winlose: ""})
     }
     console.log(this.state)
 
@@ -28,13 +30,20 @@ class App extends React.Component {
       let j = Math.floor(Math.random() * (i + 1));
         [cards[i], cards[j]] = [cards[j], cards[i]];
     }
+
+    if (this.state.score === 9) {
+      this.setState({winlose: "You win!", clickedCards: [], score: 0})
+      return;
+    }
   }
 
   render() {
     return (
     <Wrapper>
-      <h1 className="title">Memory Click Game</h1>
-      <h2 className="title">Total = {this.state.score}</h2>
+      <h1 className="header">Memory Click Game</h1>
+      <h2 className="subheader">Don't click the same image twice</h2>
+      <h2 className="subheader">Total = {this.state.score}</h2>
+      <h1 className="header">{this.state.winlose}</h1>
       
       {this.state.cards.map((props) => (
         <Card 

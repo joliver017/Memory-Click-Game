@@ -1,5 +1,11 @@
-.title {
+.header {
   width: 100%;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
+
+.subheader {
+  width: 100%;
+  text-align: center;
+}
+
